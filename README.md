@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 # 🔍 What's Not Being Researched Engine?
 
-### Discover the Uncharted: Uncovering Critical Gaps in Global Knowledge
+## Discover the Uncharted: Uncovering Critical Gaps in Global Knowledge
 
 ---
 
@@ -154,14 +154,6 @@ Given more time, we envision the following enhancements:
 * **Refined Gap Detection Algorithms:** Incorporate more sophisticated NLP techniques (e.g., topic modeling, knowledge graph analysis) to identify nuanced and complex interdisciplinary gaps.
 * **Collaboration Features:** Enable researchers to share identified gaps and collaborate on potential projects.
 * **Crowdsourced Validation:** Allow users to confirm or refine identified gaps and suggested questions.
-
----
-
-## 🤝 Team
-
-* **[Your Name/GitHub Handle]** - Role (e.g., Lead Developer, UI/UX Designer, Data Analyst)
-* **[Team Member 2 Name/GitHub Handle]** - Role
-* **[Team Member 3 Name/GitHub Handle]** - Role
 
 ---
 
