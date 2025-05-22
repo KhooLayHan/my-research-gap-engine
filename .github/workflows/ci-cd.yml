@@ -1,62 +1,67 @@
-name: CI/CD Pipeline
+# .github/workflows/ci-cd.yml
+
+name: CI/CD Pipeline - Research Gap Engine
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main # Trigger on pushes to the main branch
   pull_request:
-    branches: [ main ]
+    branches:
+      - main # Trigger on pull requests targeting the main branch
+
+env:
+  # Vercel environment variables specific to the CI/CD pipeline
+  # These are generally needed for Vercel CLI to correctly link and deploy your project.
+  # Get these from your Vercel project settings.
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }} # Optional, but good practice if you have an organization
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }} # Optional, but good practice
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+  build_and_deploy:
+    runs-on: ubuntu-latest # Use the latest Ubuntu runner
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4 # Checkout the repository code
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4 # Set up Node.js environment
         with:
-          node-version: '20'
+          node-version: '20' # Use Node.js LTS version 20
+          cache: 'pnpm'      # Cache pnpm dependencies
 
       - name: Install pnpm
-        run: npm install -g pnpm
-        # uses: pnpm/action-setup@v2
-        # with:
-        #   version: 8
-      
-        # - name: Get pnpm store directory
-      #   shell: bash
-      #   run: |
-      #     echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      # - name: Setup pnpm cache
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: ${{ env.STORE_PATH }}
-      #     key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-pnpm-store-
+        run: npm install -g pnpm # Install pnpm globally
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install --frozen-lockfile # Install project dependencies using pnpm
 
       - name: Run ESLint
-        run: pnpm lint
+        run: pnpm lint # Run ESLint checks
 
-      - name: Type TypeScript check
-        run: pnpm type-check
+      - name: Run TypeScript check
+        run: pnpm type-check # Ensure your type-check script is defined in package.json
 
-      - name: Build Next.js Application
-        run: pnpm build
-        env:
-          PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+      - name: Build Next.js application
+        run: pnpm build # Build the Next.js project for production
 
       - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          # vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          # vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./
-          vercel-args: '--prod' 
+        # This step handles the actual deployment to Vercel.
+        # It uses the Vercel CLI.
+        run: |
+          pnpm install -g vercel@latest # Install Vercel CLI globally
+          
+          # Pull Vercel project settings and environment variables
+          # This ensures that secrets defined in Vercel (like PERPLEXITY_API_KEY)
+          # are available during the build phase in the CI environment if needed.
+          # The --yes flag answers "yes" to any prompts, and --environment=production
+          # ensures it pulls the production environment variables.
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+          # Deploy the pre-built application to Vercel.
+          # --prebuilt tells Vercel to use the output from `pnpm build` directly,
+          # which saves time by not rebuilding on Vercel's side.
+          # --prod flag deploys to the production environment (main domain).
+          # --token is required for authentication with Vercel.
+          vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
