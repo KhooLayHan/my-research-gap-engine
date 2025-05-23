@@ -28,6 +28,12 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm # Install pnpm globally
 
+      - name: Setup pnpm
+        run: |
+          pnpm setup
+          echo "${PNPM_HOME}" >> $GITHUB_PATH
+          source ${PNPM_HOME}/env
+
       - name: Setup Node.js
         uses: actions/setup-node@v4 # Set up Node.js environment
         with:
