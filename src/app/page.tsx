@@ -120,14 +120,14 @@ const HomePage: React.FC = () => {
   const handleSearch = () => {
     if (topic.trim()) {
       // Encode the topic to safely pass it as a URL parameter
-      router.push(`/explorer?topic=${ encodeURIComponent(topic.trim()) }`);
+      router.push(`/explorer?topic=${encodeURIComponent(topic.trim())}`);
     }
   }
   
   // Handle example query clicks
   const handleExampleClick = (example: string) => {
     setTopic(example);
-    router.push(`/explorer?topic=${ encodeURIComponent(example) }`);
+    router.push(`/explorer?topic=${encodeURIComponent(example)}`);
   }
 
   const exampleQueries = [
@@ -154,14 +154,14 @@ const HomePage: React.FC = () => {
           type="text"
           placeholder="Enter a topicto explore research gaps..."
           className="flex-grow p-3 text-lg rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500"
-          value={ topic }
-          onChange={ (e) => setTopic(e.target.value) }
-          onKeyDown={ (e) => e.key === 'Enter' && handleSearch() }
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
         />
         <Button
-          onClick={ handleSearch }
+          onClick={handleSearch}
           className="px-6 py-3 text-lg font-semibold bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition-colors duration-200"
-          disabled={ !topic.trim() }
+          disabled={!topic.trim()}
         >
           Explore Missing Research
         </Button>
@@ -172,12 +172,12 @@ const HomePage: React.FC = () => {
         { 
           exampleQueries.map((query) => (
             <Badge
-              key={ query }
+              key={query}
               variant="secondary"
               className="cursor-pointer px-3 py-1 rounded-full text-sm hover:bg-blue-100 transition-colors duration-200"
-              onClick={ () => handleExampleClick(query) }
+              onClick={() => handleExampleClick(query)}
             >
-              { query }
+              {query}
             </Badge>
           ))
         }
