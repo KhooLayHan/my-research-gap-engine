@@ -123,7 +123,7 @@ const HomePage: React.FC = () => {
       router.push(`/explorer?topic=${ encodeURIComponent(topic.trim()) }`);
     }
   }
-
+  
   // Handle example query clicks
   const handleExampleClick = (example: string) => {
     setTopic(example);
@@ -143,7 +143,7 @@ const HomePage: React.FC = () => {
       <h1 className="text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
         Uncover the uncharted: 
         <br/>
-        <span className="text-blue-600">What's Not Being Researched?</span>
+        <span className="text-blue-600">What&apos;s Not Being Researched?</span>
       </h1>
       <p className="text-lg text-gray-700 mb-10 max-w-prose">
         Explore critical knowledge gaps with across various fields. Our engine helps to discover overlooked areas, underrepresented populations, and neglected regions in global research.
