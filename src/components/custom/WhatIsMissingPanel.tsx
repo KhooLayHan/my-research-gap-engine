@@ -17,12 +17,12 @@ const WhatIsMissingPanel: React.FC<WhatIsMissingPanelProps> = ({ insights, sugge
         <div className="mb-6">
           <h3 className="text-lg font-medium mb-2 text-gray-800">Auto-Generated Insights: </h3>
           {
-             insights.length > 0 ? (
+            insights.length > 0 ? (
               <ul className='list-disc pl-5 text-gray-700 space-y-1'>
                 {
                   insights.map((insight, index) => (
                     <li key={index}>{insight}</li>
-                  )
+                  ))
                 }
               </ul>
             ) : (
@@ -53,4 +53,4 @@ const WhatIsMissingPanel: React.FC<WhatIsMissingPanelProps> = ({ insights, sugge
   );
 };
 
-export default SubtopicRadar;
+export default WhatIsMissingPanel;
