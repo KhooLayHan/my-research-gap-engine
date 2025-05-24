@@ -152,7 +152,7 @@ const HomePage: React.FC = () => {
       <div className="w-full flex flex-col sm:flex-row gap-4 mb-6">
         <Input
           type="text"
-          placeholder="Enter a topicto explore research gaps..."
+          placeholder="Enter a topic to explore research gaps..."
           className="flex-grow p-3 text-lg rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500"
           value={topic}
           onChange={(e) => setTopic(e.target.value)}

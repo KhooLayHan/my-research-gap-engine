@@ -30,6 +30,7 @@ jobs:
 
       - name: Setup pnpm
         run: |
+          export SHELL=/bin/bash
           pnpm setup
           echo "${PNPM_HOME}" >> $GITHUB_PATH
           source ${PNPM_HOME}/env
