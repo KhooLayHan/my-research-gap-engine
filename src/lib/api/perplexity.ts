@@ -6,17 +6,24 @@ const PERPLEXITY_API_URL = "https://api.perplexity.ai/chat/completions";
 // API Key for the Perplexity Sonar API
 const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
 
+type PerplexitySearchModel = 'sonar' | 'sonar-pro';
+type PerplexityResearchModel = 'sonar-deep-research';
+type PerplexityReasoningModel = 'sonar-reasoning' | 'sonar-reasoning-pro';
+type PerplexityOfflineModel = 'r1-1776';
+
+type PerplexityModel = PerplexitySearchModel | PerplexityResearchModel | PerplexityReasoningModel | PerplexityOfflineModel;
+
 /**
  * Calls the Perplexity Sonar API to get a chat completion.
  * 
  * @param messages - An array of messages representing the conversation history.
- * @param model - The Perplexity model to use (e.g. "sonar-small", "sonar-medium", "sonar-pro").
+ * @param model - The Perplexity model to use.
  * @returns A Promise that resolves to the Perplexity API response.
  * @throws An error if the API key is missing or the API call fails.
  */
 export async function getPerplexityCompletion(
   messages: PerplexityMessage[],
-  model: 'sonar-small' | 'sonar-medium' | 'sonar-pro' = 'sonar-pro' // Defaults to sonar-pro for better results
+  model: PerplexityModel = 'sonar-pro' // Defaults to sonar-pro for better results
 ): Promise<PerplexityAPIResponse> {
   if (!PERPLEXITY_API_KEY) {
     throw new Error('PERPLEXITY_API_KEY is not configured. Please set PERPLEXITY_API_KEY in your .env.local file.');
