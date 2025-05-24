@@ -61,7 +61,7 @@ const ExplorerPage: React.FC = () => {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4">
         <h1 className="text-3xl font-bold text-blue-600 mb-4">Analyzing Research Gaps...</h1>
-        <p className="text-gray-600">This may take a few seconds, please wait while we gather insights for &quote;{topic}&quote;.</p>
+        <p className="text-gray-600">This may take a few seconds, please wait while we gather insights for &#34;{topic}&#34;.</p>
         {
           // TODO: Add a loading spinner
         }
@@ -84,8 +84,8 @@ const ExplorerPage: React.FC = () => {
     // TODO: This case should ideally be covered by error handling or a loading state, but as a fallback.
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4">
-        <h1 className="text-3xl font-bold text-gray-700 mb-4">No research data found for &quote;{topic}&quote;.</h1>
-        <p className="text-gray-600">Could not retrieve research data for &quote;{topic}&quote;.</p>
+        <h1 className="text-3xl font-bold text-gray-700 mb-4">No research data found for &#34;{topic}&#34;.</h1>
+        <p className="text-gray-600">Could not retrieve research data for &#34;{topic}&#34;.</p>
       </div>
     );
   }
