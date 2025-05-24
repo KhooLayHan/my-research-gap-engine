@@ -28,13 +28,6 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm # Install pnpm globally
 
-      - name: Setup pnpm
-        run: |
-          export SHELL=/bin/bash
-          pnpm setup
-          echo "${PNPM_HOME}" >> $GITHUB_PATH
-          source ${PNPM_HOME}/env
-
       - name: Setup Node.js
         uses: actions/setup-node@v4 # Set up Node.js environment
         with:
@@ -57,7 +50,7 @@ jobs:
         # This step handles the actual deployment to Vercel.
         # It uses the Vercel CLI.
         run: |
-          pnpm install -g vercel@latest # Install Vercel CLI globally
+          pnpm add -g vercel@latest # Install Vercel CLI globally
           
           # Pull Vercel project settings and environment variables
           # This ensures that secrets defined in Vercel (like PERPLEXITY_API_KEY)
