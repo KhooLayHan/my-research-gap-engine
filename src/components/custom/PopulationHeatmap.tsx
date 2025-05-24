@@ -39,7 +39,7 @@ const RegionMapVisualization: React.FC<PopulationHeatmapProps> = ({ data }) => {
             </div>
           ) : (
             // <div className="h-64 flex flex-col items-center justify-center">
-            <p className="text-gray-500">No regional data available for this topic.</p>
+            <p className="text-gray-500">No population data available for this topic.</p>
             // </div>
           )
         }
