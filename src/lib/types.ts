@@ -31,9 +31,10 @@ export interface SubtopicData {
 }
 
 /**  
- * Defines the overall structure for the mock research gap data.
+ * Defines the overall structure for the processed research gap data returned to the frontend.
  */
 export interface ResearchData {
+  id?: string; // Optional ID for saved queries using local storage
   query: string;
   summary: string;
   timeline: TimelineData[];
