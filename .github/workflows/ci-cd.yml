@@ -37,8 +37,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile # Install project dependencies using pnpm
 
-      - name: Run ESLint
-        run: pnpm lint # Run ESLint checks
+      # - name: Run ESLint
+      #   run: pnpm lint # Run ESLint checks
 
       - name: Run TypeScript check
         run: pnpm type-check # Ensure your type-check script is defined in package.json

@@ -52,7 +52,7 @@ export interface ResearchData {
  */
 export interface PerplexityMessage {
   role: 'system' | 'user' | 'assistant';
-  content: string
+  content: string | PerplexityContentPart[];
 }
 
 /**
