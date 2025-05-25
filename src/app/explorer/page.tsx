@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 const ExplorerPage: React.FC = () => {
   const searchParams = useSearchParams();
   const topic = searchParams.get("topic") || "No Topic Provided";
+  const router = useRouter();
   
   const [loading, setLoading] = useState(true);
   const [researchData, setResearchData] = useState<ResearchData | null>(null);
@@ -134,7 +135,7 @@ const ExplorerPage: React.FC = () => {
           <Button
             variant="link"
             className="text-blue-600 hover:underline p-0 h-auto ml-1"
-            onClick={() => useRouter().push(
+            onClick={() => router.push(
               `/insights?topic=${encodeURIComponent(researchData.query)}` +
               `&insights=${encodeURIComponent(researchData.insights.join('||'))}` +
               `&questions=${encodeURIComponent(researchData.suggestedQuestions.join('||'))}`
