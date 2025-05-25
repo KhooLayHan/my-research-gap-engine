@@ -5,7 +5,7 @@ import { searchInputSchema } from "@/lib/schemas/searchSchema";
 import { ResearchData, TimelineData, RegionData,PopulationData, SubtopicData, PerplexityMessage, PerplexityAPIResponse, PerplexityContentPart } from "@/lib/types";
 
 // Helper function to robustly extract content from Perplexity's complex message structure
-function extractPerplexityContent(response: PerplexityAPIResponse): string {
+function extractPerplexityContent(response: any): string {
   if (response.choices && response.choices.length > 0 && response.choices[0].message) {
     const message = response.choices[0].message;
 
@@ -18,8 +18,8 @@ function extractPerplexityContent(response: PerplexityAPIResponse): string {
     if (Array.isArray(message.content)) {
       // Concatenate text parts
       return message.content
-        .map((part) => part.text) as string
-        .filter(Boolean) as string
+        .map((part: any) => part.text)
+        .filter(Boolean)
         .join('\n');
     }
   }
