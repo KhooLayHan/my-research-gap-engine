@@ -1,19 +1,10 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
 import { Inter } from "next/font/google";
+
 import "./globals.css";
+import NavBar from "@/components/custom/NavBar";
 
 const inter = Inter({ subsets: ['latin'] });
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   title: "What's Not Being Researched Engine?",
@@ -28,7 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <NavBar />
+        <main className="flex min-h-screen flex-col items-center justify-start pt-20 p-4">
           {children}
         </main>
       </body>
