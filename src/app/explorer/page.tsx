@@ -68,9 +68,6 @@ const ExplorerPage: React.FC = () => {
       <div className="flex flex-col items-center justify-center min-h-screen p-4">
         <h1 className="text-3xl font-bold text-blue-600 mb-4">Analyzing Research Gaps...</h1>
         <p className="text-gray-600">This may take a few seconds, please wait while we gather insights for &#34;{topic}&#34;.</p>
-        {
-          // TODO: Add a loading spinner
-        }
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mt-8"></div>
       </div>
     );
@@ -100,6 +97,9 @@ const ExplorerPage: React.FC = () => {
   // console.log(researchData.insights);
   // console.log(researchData.suggestedQuestions);
 
+  // Helper to clean up text (remove markdown bold and list hyphens)
+  const cleanText = (text: string) => text.replace(/\*\*/g, '').replace(/^- /, '').trim();
+  
   return (
     <div className="container mx-auto p-4 md:px-8 max-w-6xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">

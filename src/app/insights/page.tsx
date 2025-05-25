@@ -14,8 +14,11 @@ const InsightsPage: React.FC = () => {
   // Get the insights/questions from URL params
   const topic = searchParams.get('topic') || 'Unknown Topic';
 
-  const initialInsights = searchParams.get('insights')?.split('||') || [];
-  const initialQuestions = searchParams.get('questions')?.split('||') || [];
+  // Helper to clean up text (remove markdown bold and list hyphens)
+  const cleanText = (text: string) => text.replace(/\*\*/g, '').replace(/^[-\*]\s*/, '').trim();
+
+  const initialInsights = (searchParams.get('insights')?.split('||') || []).map(cleanText);
+  const initialQuestions = (searchParams.get('questions')?.split('||') || []).map(cleanText);
 
   // console.log(topic);
   // console.log(initialInsights);
@@ -52,8 +55,8 @@ const InsightsPage: React.FC = () => {
       }
 
       const data = await response.json();
-      setInsights(data.newInsights || []);
-      setSuggestedQuestions(data.newQuestions || []);
+      setInsights((data.newInsights || []).map(cleanText));
+      setSuggestedQuestions((data.newQuestions || []).map(cleanText));
     } catch (err) {
       console.error('Error regenerating suggestions:', err);
       setError(err instanceof Error ? err.message : 'Failed to regenerate suggestions.');
@@ -70,25 +73,29 @@ const InsightsPage: React.FC = () => {
       let isAssigned = false;
       q = q.toLowerCase();
 
-      if (q.includes('ethical')) {
+      if (q.includes('ethical') || q.includes('moral')) {
         (groups['Ethical Considerations'] = groups['Ethical Considerations'] || []).push(q);
         isAssigned = true;
       }
-      if (q.includes('impact') || q.includes('societal')) {
+      if (q.includes('impact') || q.includes('societal') || q.includes('community')) {
         (groups['Societal Impact'] = groups['Societal Impact'] || []).push(q);
         isAssigned = true;
       }
-      if (q.includes('africa') || q.includes('asia') || q.includes('latin america') || q.includes('region')) {
+      if (q.includes('africa') || q.includes('asia') || q.includes('america') || q.includes('europe') || q.includes('oceania') || q.includes('region')) {
         (groups['Regional Focus'] = groups['Regional Focus'] || []).push(q);
         isAssigned = true;
       }
-      if (q.includes('population') || q.includes('demographic') || q.includes('community')) {
+      if (q.includes('population') || q.includes('demographic') || q.includes('elderly') || q.includes('children') || q.includes('youth')) {
         (groups['Population Groups'] = groups['Population Groups'] || []).push(q);
+        isAssigned = true;
+      }
+      if (q.includes('future') || q.includes('long-term') || q.includes('predict')) {
+        (groups['Future & Forecasting'] = groups['Future & Forecasting'] || []).push(q);
         isAssigned = true;
       }
 
       if (!isAssigned) {
-        (groups['General/Others'] = groups['General/Others'] || []).push(q);
+        (groups['General/Others Gaps'] = groups['General/Others Gaps'] || []).push(q);
       }
     });
 
@@ -111,7 +118,7 @@ const InsightsPage: React.FC = () => {
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-4xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
-        Insights & Suggested Questions for: <span className="text-blue-600">{topic}</span>
+        Insights & Suggested Questions for: <span className="text-blue-600">{topic || 'Loading...'}</span>
       </h1>
 
       {/* Insights Panel */}
@@ -147,6 +154,12 @@ const InsightsPage: React.FC = () => {
         </CardHeader>
         <CardContent>
           {error && <p className="text-red-500 mb-4">{error}</p>}
+          {loading && (
+            <div className="flex justify-center items-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <p className="ml-3 text-gray-600">Generating new insights...</p>
+            </div>
+          )}
           {!loading && Object.keys(qroupedQuestions).length > 0 ? (
             <div className="space-y-6">
               {Object.entries(qroupedQuestions).map(([group, questions]) => (
@@ -165,7 +178,7 @@ const InsightsPage: React.FC = () => {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">No suggested questions available for this topic yet. Click &#34;Regenerate&#34; to try again.</p>
+            !loading && <p className="text-gray-500">No suggested questions available for this topic yet. Click &#34;Regenerate&#34; to try again.</p>
           )}
         </CardContent>
       </Card>

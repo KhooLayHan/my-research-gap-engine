@@ -30,12 +30,12 @@ const ResearchTimelineChart: React.FC<ResearchTimelineChartProps> = ({ data }) =
                     tickLine={false} 
                     axisLine={false} 
                     tickFormatter={(value) => value.toString()} 
-                    className="text-sm"
+                    className="text-sm sm:text-sm"
                   />
                   <YAxis 
                     tickLine={false} 
                     axisLine={false} 
-                    className="text-sm" 
+                    className="text-sm sm:text-sm" 
                     width={30} // Adjust width to prevents labels from overlapping
                   />
                   <Tooltip 
@@ -43,7 +43,7 @@ const ResearchTimelineChart: React.FC<ResearchTimelineChartProps> = ({ data }) =
                     content={({ active, payload }) => {
                       if (active && payload && payload.length) {  
                         return (
-                          <div className='rounded-lg border bg-white p-2 text-sm shadow-sm'>
+                          <div className='rounded-lg border bg-white p-2 text-sm sm:text-sm shadow-sm'>
                             <div className='grid grid-cols-2 gap-2'>
                               <div className='flex flex-col'>
                                 <span className='text-gray-500'>Year</span>

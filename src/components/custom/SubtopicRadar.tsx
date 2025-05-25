@@ -30,7 +30,7 @@ const SubtopicRadar: React.FC<SubtopicRadarProps> = ({ data }) => {
                     type="category"
                     tickLine={false} 
                     axisLine={false} 
-                    className="text-sm"
+                    className="text-sm sm:text-sm"
                     width={140} // Adjust width for longer labels
                   />
                   <XAxis 
@@ -39,14 +39,14 @@ const SubtopicRadar: React.FC<SubtopicRadarProps> = ({ data }) => {
                     axisLine={false} 
                     domain={[0, 100]} // Coverage is 0-100%
                     tickFormatter={(value) => `${value}%`}
-                    className="text-sm"
+                    className="text-sm sm:text-sm"
                   />
                   <Tooltip 
                     cursor={{ fill: 'transparent' }}
                     content={({ active, payload }) => {
                       if (active && payload && payload.length) {
                         return (
-                          <div className='rounded-lg border bg-white p-2 text-sm shadow-sm'>
+                          <div className='rounded-lg border bg-white p-2 text-sm sm:text-sm shadow-sm'>
                             <div className='grid grid-cols-2 gap-2'>
                               <div className='flex flex-col'>
                                 <span className='text-gray-500'>Subtopic</span>
