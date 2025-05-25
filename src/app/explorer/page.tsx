@@ -93,13 +93,20 @@ const ExplorerPage: React.FC = () => {
     );
   }
 
+  console.log(researchData.summary);
   // console.log(researchData.query);
   // console.log(researchData.insights);
   // console.log(researchData.suggestedQuestions);
-
-  // Helper to clean up text (remove markdown bold and list hyphens)
-  const cleanText = (text: string) => text.replace(/\*\*/g, '').replace(/^- /, '').trim();
   
+  // Helper to clean up text (remove markdown bold and list hyphens)
+  const cleanText = (text: string) => text.replace(/\*\*/g, '').replace(/^- /, '').replace(/^# /, '').trim();
+
+  // Helper to clean up Y-axis labels for SubtopicRadar
+  const cleanYAxisLabel = (text: string) => text.replace(/^- /, '').replace(/\*\*/g, '').trim();
+
+  // console.log(researchData.insights.map(cleanText));
+  // console.log(researchData.suggestedQuestions.map(cleanText));
+
   return (
     <div className="container mx-auto p-4 md:px-8 max-w-6xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
@@ -112,23 +119,31 @@ const ExplorerPage: React.FC = () => {
           <CardTitle className="text-2xl font-semibold text-gray-800">Topic Summary</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-700 loading-relaxed">{researchData.summary}</p>
+          {/* Split summary by double newline for paragraphs and clean each paragraph */}
+          {researchData.summary.split('\n\n').map((paragraph, index) => (
+            <p key={index} className="text-gray-700 leading-relaxed mb-2 last:mb-0">
+              {cleanText(paragraph)}
+            </p>
+          ))}
         </CardContent>
       </Card>
 
       { /* Research Gap Visualization */ }
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8 mb-8">
         <ResearchTimelineChart data={researchData.timeline}/>
         <RegionMapVisualization data={researchData.regions}/>
         <PopulationHeatmap data={researchData.populations}/>
-        <SubtopicRadar data={researchData.subtopics}/>
+        <SubtopicRadar data={researchData.subtopics.map(subtopic => ({
+          ...subtopic,
+          name: cleanYAxisLabel(subtopic.name)
+        }))}/>
       </div>
       
       { /* What's Missing Panel */ }
       <div className="mb-8">
         <WhatIsMissingPanel 
-          insights={researchData.insights}
-          suggestedQuestions={researchData.suggestedQuestions}
+          insights={researchData.insights.map(cleanText)}
+          suggestedQuestions={researchData.suggestedQuestions.map(cleanText)}
         />
       </div>
 
@@ -141,8 +156,8 @@ const ExplorerPage: React.FC = () => {
             className="text-blue-600 hover:underline p-0 h-auto ml-1"
             onClick={() => router.push(
               `/insights?topic=${encodeURIComponent(researchData.query)}` +
-              `&insights=${encodeURIComponent(researchData.insights.join('||'))}` +
-              `&questions=${encodeURIComponent(researchData.suggestedQuestions.join('||'))}`
+              `&insights=${encodeURIComponent(researchData.insights.map(cleanText).join('||'))}` +
+              `&questions=${encodeURIComponent(researchData.suggestedQuestions.map(cleanText).join('||'))}`
             )}
           >
             Insights Page

@@ -31,7 +31,7 @@ const SubtopicRadar: React.FC<SubtopicRadarProps> = ({ data }) => {
                     tickLine={false} 
                     axisLine={false} 
                     className="text-sm sm:text-sm"
-                    width={140} // Adjust width for longer labels
+                    width={220} // Adjust width for longer labels
                   />
                   <XAxis 
                     type="number" 

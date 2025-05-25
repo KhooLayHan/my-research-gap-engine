@@ -17,8 +17,13 @@ const InsightsPage: React.FC = () => {
   // Helper to clean up text (remove markdown bold and list hyphens)
   const cleanText = (text: string) => text.replace(/\*\*/g, '').replace(/^[-\*]\s*/, '').trim();
 
+  // Helper to capitalize first letter of each sentence
+  const capitalizeSentence = (text: string) => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+  };
+
   const initialInsights = (searchParams.get('insights')?.split('||') || []).map(cleanText);
-  const initialQuestions = (searchParams.get('questions')?.split('||') || []).map(cleanText);
+  const initialQuestions = (searchParams.get('questions')?.split('||') || []).map((text: string) => capitalizeSentence(cleanText(text)));
 
   // console.log(topic);
   // console.log(initialInsights);
@@ -56,7 +61,7 @@ const InsightsPage: React.FC = () => {
 
       const data = await response.json();
       setInsights((data.newInsights || []).map(cleanText));
-      setSuggestedQuestions((data.newQuestions || []).map(cleanText));
+      setSuggestedQuestions((data.newQuestions || []).map((text: string) => capitalizeSentence(cleanText(text))));
     } catch (err) {
       console.error('Error regenerating suggestions:', err);
       setError(err instanceof Error ? err.message : 'Failed to regenerate suggestions.');
@@ -118,7 +123,7 @@ const InsightsPage: React.FC = () => {
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-4xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
-        Insights & Suggested Questions for: <span className="text-blue-600">{topic || 'Loading...'}</span>
+        Insights & Suggested Questions for: <br/><span className="text-blue-600">{topic || 'Loading...'}</span>
       </h1>
 
       {/* Insights Panel */}
