@@ -24,28 +24,50 @@ const RegionMapVisualization: React.FC<RegionMapVisualizationProps> = ({ data })
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={sortedData} layout="vertical" margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" vertical={false} className="stroke-gray-200"/>
-                  <XAxis dataKey="name" tickLine={false} axisLine={false} tickFormatter={ (value) => value.toString() } className='text=sm'/>
-                  <YAxis tickLine={false} axisLine={false} className='text-sm' width={30}/>
+                  <CartesianGrid strokeDasharray="3 3" horizontal={false} className="stroke-gray-200"/>
+                  <YAxis 
+                    dataKey="name" 
+                    type="category"
+                    tickLine={false} 
+                    axisLine={false} 
+                    className="text-sm"
+                    width={100} // Adjust width to prevent labels from overlapping
+                  />
+                  <XAxis
+                    type="number"
+                    tickLine={false} 
+                    axisLine={false} 
+                    className="text-sm" 
+                  />
                   <Tooltip 
+                    cursor={{ fill: 'transparent' }}
+                    content={({ active, payload }) => {
+                      if (active && payload && payload.length) {
+                        return (
+                          <div className='rounded-lg border bg-white p-2 text-sm shadow-sm'>
+                            <div className='grid grid-cols-2 gap-2'>
+                              <div className='flex flex-col'>
+                                <span className='text-gray-500'>Region</span>
+                                <span className='font-bold text-gray-900'>{payload[0].payload.name}</span>
+                              </div>
+                              <div className='flex flex-col'>
+                                <span className='text-gray-500'>count</span>
+                                <span className='font-bold text-gray-900'>{payload[0].payload.count}</span>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      }
+                      return null;
+                    }}
+                  />
+                  <Bar dataKey="count" fill="#22c55e" radius={[0, 4, 4, 0]}/> {/* Green bars */}
+                  <Legend />
                 </BarChart>
               </ResponsiveContainer>
-            
-              <ul className="list-disc pl-5 text-gray-700">
-                {
-                  data.map((item, index) => (
-                    <li key={index}>
-                      <span className="font-medium">{item.name}: {item.count} studies</span>
-                    </li>
-                  ))
-                }
-              </ul>
-              <div className="text-xs text-gray-500 mt-2">Years: (Mock Data)</div>
             </div>
           ) : (
-            // <div className="h-64 flex flex-col items-center justify-center">
-            <p className="text-gray-500">No regional data available for this topic.</p>
-            // </div>
+            <p className="text-gray-500 text-center">No regional data available for this topic.</p>
           )
         }
       </CardContent>

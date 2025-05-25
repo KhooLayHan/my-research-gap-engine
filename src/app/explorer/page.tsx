@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation"; // Hook to read URL parameters 
+import { useSearchParams, useRouter } from "next/navigation"; // Hook to read URL parameters 
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -12,6 +12,7 @@ import SubtopicRadar from "@/components/custom/SubtopicRadar";
 import WhatIsMissingPanel from "@/components/custom/WhatIsMissingPanel";
 
 import { ResearchData } from "@/lib/types";
+import { Button } from "@/components/ui/button";
 
 const ExplorerPage: React.FC = () => {
   const searchParams = useSearchParams();
@@ -23,7 +24,6 @@ const ExplorerPage: React.FC = () => {
   
   useEffect(() => {
     // Only fetch if a topic is provided
-    // console.log(4, topic);
     if (!topic) {
       setError('No topic provided. Please go back to the home page and enter a topic to explore research gaps.');
       setLoading(false);
@@ -58,6 +58,9 @@ const ExplorerPage: React.FC = () => {
 
     fetchData(); // Execute the function when the component mounts or the topic changes
   }, [topic]); // Dependency array: re-run when topic changes
+  
+  console.log(7, researchData);
+  console.log(8, setResearchData);
   
   if (loading) {
     return (
@@ -124,10 +127,21 @@ const ExplorerPage: React.FC = () => {
         />
       </div>
 
-      { /* Link to Insights/Suggested Questions  (Future) */ }
+      { /* Link to Insights/Suggested Questions Page */ }
       <div className="text-center mt-12">
         <p className="text-gray-600">
-          For more in-depth analysis and to generate additional suggested questions, visit the <a href="/insights" className="text-blue-600 hover:underline ml-1">Insights</a> page (Coming Soon).
+          For more in-depth analysis and to generate additional suggested questions, visit the 
+          <Button
+            variant="link"
+            className="text-blue-600 hover:underline p-0 h-auto ml-1"
+            onClick={() => useRouter().push(
+              `/insights?topic=${encodeURIComponent(researchData.query)}` +
+              `&insights=${encodeURIComponent(researchData.insights.join('||'))}` +
+              `&questions=${encodeURIComponent(researchData.suggestedQuestions.join('||'))}`
+            )}
+          >
+            Insights Page
+          </Button>.
         </p>
       </div>
     </div>
