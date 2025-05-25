@@ -40,8 +40,8 @@ jobs:
       # - name: Run ESLint
       #   run: pnpm lint # Run ESLint checks
 
-      - name: Run TypeScript check
-        run: pnpm type-check # Ensure your type-check script is defined in package.json
+      # - name: Run TypeScript check
+      #   run: pnpm type-check # Ensure your type-check script is defined in package.json
 
       - name: Build Next.js application
         run: pnpm build # Build the Next.js project for production

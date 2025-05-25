@@ -18,7 +18,7 @@ function extractPerplexityContent(response: PerplexityAPIResponse): string {
     if (Array.isArray(message.content)) {
       // Concatenate text parts
       return message.content
-        .map((part: PerplexityContentPart) => part.title)
+        .map((part) => part.text) as string
         .filter(Boolean) as string
         .join('\n');
     }
