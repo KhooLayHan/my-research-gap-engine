@@ -16,13 +16,14 @@ import { ResearchData } from "@/lib/types";
 const ExplorerPage: React.FC = () => {
   const searchParams = useSearchParams();
   const topic = searchParams.get("topic") || "No Topic Provided";
-
+  
   const [loading, setLoading] = useState(true);
   const [researchData, setResearchData] = useState<ResearchData | null>(null);
   const [error, setError] = useState<string | null>(null);
-
+  
   useEffect(() => {
     // Only fetch if a topic is provided
+    // console.log(4, topic);
     if (!topic) {
       setError('No topic provided. Please go back to the home page and enter a topic to explore research gaps.');
       setLoading(false);
@@ -34,25 +35,26 @@ const ExplorerPage: React.FC = () => {
       setResearchData(null); // Clear any existing data
       setError(null); // Clear any existing errors
 
-    try {
-      // Call your new Next.js API route
-      const response = await fetch(`/api/search?topic=${encodeURIComponent(topic)}`);
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch research data from API.');
-      }
+      try {
+        // Call your new Next.js API route
+        const response = await fetch(`/api/search?topic=${encodeURIComponent(topic)}`);
 
-      const data = await response.json();
-      setResearchData(data.processedData);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      setError(error instanceof Error ? error.message || 'Failed to load research data. Please try again.' : 'An unknown error occurred.');
-    } finally {
-      setLoading(false);
-    }
-  };
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to fetch research data from API.');
+        }
+
+        const data = await response.json();
+        
+        setResearchData(data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setError(error instanceof Error ? error.message || 'Failed to load research data. Please try again.' : 'An unknown error occurred.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
     fetchData(); // Execute the function when the component mounts or the topic changes
   }, [topic]); // Dependency array: re-run when topic changes
