@@ -244,7 +244,7 @@ async function processPerplexityResultsAndDetectGaps(topic: string): Promise<Res
       },
     ], 'sonar');
 
-    console.log(2, summaryResponse);
+    // console.log(2, summaryResponse);
     summary = extractPerplexityContent(summaryResponse);
     console.log(1, summary);
 
