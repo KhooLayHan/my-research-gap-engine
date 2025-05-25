@@ -23,25 +23,26 @@ type PerplexityModel = PerplexitySearchModel | PerplexityResearchModel | Perplex
  */
 export async function getPerplexityCompletion(
   messages: PerplexityMessage[],
-  model: PerplexityModel = 'sonar-pro' // Defaults to sonar-pro for better results
+  model: PerplexityModel
+  // model: PerplexityModel = 'sonar-pro' // Defaults to sonar-pro for better results
 ): Promise<PerplexityAPIResponse> {
   if (!PERPLEXITY_API_KEY) {
     throw new Error('PERPLEXITY_API_KEY is not configured. Please set PERPLEXITY_API_KEY in your .env.local file.');
   }
   try {
     const response = await fetch(PERPLEXITY_API_URL, {
-      // method: 'POST',
-      // headers: {
-      //   'Content-Type': 'application/json',
-      //   'Authorization': `Bearer ${PERPLEXITY_API_KEY}`,
-      //   'Accept': 'application/json', // Explicitly request JSON 
-      // },
-      // body: JSON.stringify({
-      //   model: model,
-      //   messages: messages,
-      //   // Optional: Add more parameters as needed, e.g., stream: false, max_tokens, temperature, etc.
-      //   // For hackathons, keeping it simple is good.
-      // })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${PERPLEXITY_API_KEY}`,
+        'Accept': 'application/json', // Explicitly request JSON 
+      },
+      body: JSON.stringify({
+        model: model,
+        messages: messages,
+        // Optional: Add more parameters as needed, e.g., stream: false, max_tokens, temperature, etc.
+        // For hackathons, keeping it simple is good.
+      })
     })
 
     if (!response.ok) {

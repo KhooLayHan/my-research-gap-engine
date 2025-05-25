@@ -9,7 +9,7 @@ function extractPerplexityContent(response: any): string {
   if (response.choices && response.choices.length > 0 && response.choices[0].message) {
     const message = response.choices[0].message;
 
-    console.log(message);
+    // console.log(message);
 
     if (typeof message.content === 'string') 
       return message.content;
@@ -246,7 +246,7 @@ async function processPerplexityResultsAndDetectGaps(topic: string): Promise<Res
 
     // console.log(2, summaryResponse);
     summary = extractPerplexityContent(summaryResponse);
-    console.log(1, summary);
+    // console.log(1, summary);
 
     // 2. Fetch data for each visualization dimension
     const [timeline, regions, populations, subtopics] = await Promise.all([

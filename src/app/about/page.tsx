@@ -8,7 +8,7 @@ const AboutPage: React.FC = () => {
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-5xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
-        About the <span className="text-blue-600">"What's Not Being Researched Engine?"</span>
+        About the <span className="text-blue-600">&#34;What&#39;s Not Being Researched Engine?&#34;</span>
       </h1>
 
       {/* Overview Section */}
@@ -21,7 +21,7 @@ const AboutPage: React.FC = () => {
             In the vast and ever-expanding world of academic and scientific inquiry, certain topics receive overwhelming attention, while others, equally vital, remain underexplored. This creates significant knowledge gaps that can impede progress, misdirect resources, and leave critical questions unanswered.
           </p>
           <p className="text-gray-700 leading-relaxed">
-            Our "What's Not Being Researched Engine?" is designed to address this challenge. It's a powerful tool that goes beyond traditional search, actively identifying and visualizing these overlooked areas in research across various dimensions.
+            Our &#34;What&#39;s Not Being Researched Engine?&#34; is designed to address this challenge. It&#39;s a powerful tool that goes beyond traditional search, actively identifying and visualizing these overlooked areas in research across various dimensions.
           </p>
         </CardContent>
       </Card>
@@ -33,7 +33,7 @@ const AboutPage: React.FC = () => {
         </CardHeader>
         <CardContent>
           <p className="text-gray-700 leading-relaxed mb-4">
-            At its core, our engine leverages advanced AI capabilities to analyze the current research landscape for any given topic. Here's a simplified breakdown of our process:
+            At its core, our engine leverages advanced AI capabilities to analyze the current research landscape for any given topic. Here&#39;s a simplified breakdown of our process:
           </p>
           <ol className="list-decimal pl-6 text-gray-700 space-y-3">
             <li>
@@ -43,10 +43,10 @@ const AboutPage: React.FC = () => {
               <span className="font-semibold">Gap Detection Logic:</span> The raw data from Perplexity is then processed through our custom algorithms. We compare research activity across these dimensions, identifying areas with significantly lower publication counts, declining trends, or a complete absence of studies. We also employ techniques to filter for reputable academic sources and look for signs of active research to minimize false negatives.
             </li>
             <li>
-              <span className="font-semibold">Insight Generation:</span> Once gaps are identified, we feed these findings back into an AI model (powered by Perplexity's language model capabilities). This AI synthesizes concise insights about the identified gaps and, most importantly, generates novel, actionable research questions designed to fill those very gaps.
+              <span className="font-semibold">Insight Generation:</span> Once gaps are identified, we feed these findings back into an AI model (powered by Perplexity&#39;s language model capabilities). This AI synthesizes concise insights about the identified gaps and, most importantly, generates novel, actionable research questions designed to fill those very gaps.
             </li>
             <li>
-              <span className="font-semibold">Interactive Visualization:</span> All these insights and data points are presented on the "Gap Explorer" page through interactive charts and visualizations, making complex information easy to understand at a glance. The "Insights" page then consolidates the generated questions for further exploration.
+              <span className="font-semibold">Interactive Visualization:</span> All these insights and data points are presented on the &#34;Gap Explorer&#34; page through interactive charts and visualizations, making complex information easy to understand at a glance. The &#34;Insights&#34; page then consolidates the generated questions for further exploration.
             </li>
           </ol>
         </CardContent>
@@ -74,7 +74,7 @@ const AboutPage: React.FC = () => {
         </CardHeader>
         <CardContent>
           <p className="text-gray-700 leading-relaxed">
-            Our mission is to empower researchers, students, policymakers, and curious individuals to identify and pursue impactful research. By highlighting what's currently being overlooked, we aim to foster a more comprehensive, equitable, and innovative research landscape.
+            Our mission is to empower researchers, students, policymakers, and curious individuals to identify and pursue impactful research. By highlighting what&#39;s currently being overlooked, we aim to foster a more comprehensive, equitable, and innovative research landscape.
           </p>
         </CardContent>
       </Card>

@@ -29,8 +29,8 @@ const InsightsPage: React.FC = () => {
   // Effect to handle initial load or topic change for context
   useEffect(() => {
     if (!topic) {
-        setError('No topic provided to generate insights. Please go back to the explorer page.');
-        setLoading(false);
+      setError('No topic provided to generate insights. Please go back to the explorer page.');
+      setLoading(false);
     }
   }, [topic]);
 

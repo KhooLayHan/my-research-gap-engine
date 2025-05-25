@@ -60,8 +60,8 @@ const ExplorerPage: React.FC = () => {
     fetchData(); // Execute the function when the component mounts or the topic changes
   }, [topic]); // Dependency array: re-run when topic changes
   
-  console.log(7, researchData);
-  console.log(8, setResearchData);
+  // console.log(7, researchData);
+  // console.log(8, setResearchData);
   
   if (loading) {
     return (
@@ -96,9 +96,9 @@ const ExplorerPage: React.FC = () => {
     );
   }
 
-  console.log(researchData.query);
-  console.log(researchData.insights);
-  console.log(researchData.suggestedQuestions);
+  // console.log(researchData.query);
+  // console.log(researchData.insights);
+  // console.log(researchData.suggestedQuestions);
 
   return (
     <div className="container mx-auto p-4 md:px-8 max-w-6xl">
