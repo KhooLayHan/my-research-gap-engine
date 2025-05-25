@@ -100,7 +100,6 @@ export async function GET(request: Request) {
 
     // 5. Return processed data to the frontend
     return NextResponse.json({ insights, suggestedQuestions }, { status: 200 });
-
   } catch (error) {
     console.error('API /api/generate-insights error:', error);
     return NextResponse.json(
