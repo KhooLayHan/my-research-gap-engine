@@ -5,6 +5,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'; // Hook to get the current path
+
 import { Button } from '@/components/ui/button'; // Assuming ShadCN Button is available
 
 const NavBar: React.FC = () => {
