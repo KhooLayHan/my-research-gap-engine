@@ -18,6 +18,10 @@ const InsightsPage: React.FC = () => {
   const initialQuestions = searchParams.get('questions')?.split('||') || [];
   const topic = searchParams.get('topic') || 'Unknown Topic';
 
+  // console.log(topic);
+  // console.log(initialInsights);
+  // console.log(initialQuestions);
+
   const [insights, setInsights] = useState<string[]>(initialInsights);
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>(initialQuestions);
   const [loading, setLoading] = useState(false);

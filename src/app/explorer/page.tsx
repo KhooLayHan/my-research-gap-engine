@@ -96,6 +96,10 @@ const ExplorerPage: React.FC = () => {
     );
   }
 
+  console.log(researchData.query);
+  console.log(researchData.insights);
+  console.log(researchData.suggestedQuestions);
+
   return (
     <div className="container mx-auto p-4 md:px-8 max-w-6xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">

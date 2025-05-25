@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="container mx-auto p-4 md:p-8 max-w-4xl">
+    <div className="container mx-auto p-4 md:p-8 max-w-5xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
         About the <span className="text-blue-600">"What's Not Being Researched Engine?"</span>
       </h1>

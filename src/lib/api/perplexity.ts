@@ -30,18 +30,18 @@ export async function getPerplexityCompletion(
   }
   try {
     const response = await fetch(PERPLEXITY_API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${PERPLEXITY_API_KEY}`,
-        'Accept': 'application/json', // Explicitly request JSON 
-      },
-      body: JSON.stringify({
-        model: model,
-        messages: messages,
-        // Optional: Add more parameters as needed, e.g., stream: false, max_tokens, temperature, etc.
-        // For hackathons, keeping it simple is good.
-      })
+      // method: 'POST',
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   'Authorization': `Bearer ${PERPLEXITY_API_KEY}`,
+      //   'Accept': 'application/json', // Explicitly request JSON 
+      // },
+      // body: JSON.stringify({
+      //   model: model,
+      //   messages: messages,
+      //   // Optional: Add more parameters as needed, e.g., stream: false, max_tokens, temperature, etc.
+      //   // For hackathons, keeping it simple is good.
+      // })
     })
 
     if (!response.ok) {
