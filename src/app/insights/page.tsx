@@ -12,11 +12,10 @@ const InsightsPage: React.FC = () => {
   const router = useRouter();
 
   // Get the insights/questions from URL params
-  // A real application would have a backend API route to fetch these
-  // if they were saved from the ./explorer page, or regenerate them
+  const topic = searchParams.get('topic') || 'Unknown Topic';
+
   const initialInsights = searchParams.get('insights')?.split('||') || [];
   const initialQuestions = searchParams.get('questions')?.split('||') || [];
-  const topic = searchParams.get('topic') || 'Unknown Topic';
 
   // console.log(topic);
   // console.log(initialInsights);
@@ -27,40 +26,38 @@ const InsightsPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   
-  // Function to simulate regenerating suggestions (would be a backend API call)
+  // Effect to handle initial load or topic change for context
+  useEffect(() => {
+    if (!topic) {
+        setError('No topic provided to generate insights. Please go back to the explorer page.');
+        setLoading(false);
+    }
+  }, [topic]);
+
+  // Function to regenerate suggestions (would be a backend API call)
   const handleRegeneratedSuggestions = async () => {
+    if (!topic) {
+      setError('No topic provided to generate insights. Please go back to the explorer page.');
+      return;
+    }
+    
     setLoading(true);
     setError(null);
 
     try {
-      // In a real application, you'd call an API route here, e.g.:
-      // const response = await fetch(`/api/generate-insights?topic=${encodeURIComponent(topic)}`);
-      // const data = await response.json();
-      // setInsights(data.newInsights);
-      // setSuggestedQuestions(data.newQuestions);
+      const response = await fetch(`/api/generate-insights?topic=${encodeURIComponent(topic)}`);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to regenerate suggestions from API.');
+      }
 
-      // For now, simulate with new mock data
-      const newMockInsights = [
-        `Further analysis confirms a significant gap in ${topic} research focusing on long-term societal impacts.`,
-        `Limited interdisciplinary studies combining ${topic} with public health initiatives.`,
-        `Potential for groundbreaking research in ${topic} within underserved communities.`,
-      ];
-      const newMockQuestions = [
-        `How can AI-driven analytics predict future trends in ${topic} research in emerging economies?`,
-        `What are the ethical implications of applying ${topic} technologies in vulnerable populations?`,
-        `Develop a framework for assessing the long-term environmental sustainability of ${topic} initiatives.`,
-        `Explore the role of indigenous knowledge systems in advancing ${topic} research.`,
-      ];
-
-      setTimeout(() => {
-        setInsights(newMockInsights);
-        setSuggestedQuestions(newMockQuestions);
-        setLoading(false);
-      }, 1000);
-
+      const data = await response.json();
+      setInsights(data.newInsights || []);
+      setSuggestedQuestions(data.newQuestions || []);
     } catch (err) {
       console.error('Error regenerating suggestions:', err);
       setError(err instanceof Error ? err.message : 'Failed to regenerate suggestions.');
+    } finally {
       setLoading(false);
     }
   };
@@ -100,6 +97,17 @@ const InsightsPage: React.FC = () => {
 
   const qroupedQuestions = groupQuestions(suggestedQuestions);
 
+  // Display specific error if no topic or initial data is missing
+  if (!topic && insights.length === 0 && suggestedQuestions.length === 0 && !loading) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-4">
+        <h1 className="text-3xl font-bold text-red-600 mb-4">No Topic or Initial Data</h1>
+        <p className="text-gray-700">Please go back to the home page or explorer page to start a new search.</p>
+        <Button onClick={() => router.push('/')} className="mt-4">Go to Home</Button>
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-4xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
@@ -112,6 +120,7 @@ const InsightsPage: React.FC = () => {
           <CardTitle className="text-2xl font-semibold text-gray-800">Key Insights</CardTitle>
         </CardHeader>
         <CardContent>
+          {error && <p className="text-red-500 mb-4">{error}</p>}
           {insights.length > 0 ? (
             <ul className="list-disc pl-6 text-gray-700 space-y-2">
               {insights.map((insight, index) => (
@@ -119,9 +128,7 @@ const InsightsPage: React.FC = () => {
               ))}
             </ul>
           ) : (
-            <p className="text-gray-500">
-              No specific insights available for this topic yet. Please regenerate suggestions.
-            </p>
+            <p className="text-gray-500">No specific insights available for this topic yet. Click "Regenerate" to try again.</p>
           )}
         </CardContent>
       </Card>
@@ -140,7 +147,7 @@ const InsightsPage: React.FC = () => {
         </CardHeader>
         <CardContent>
           {error && <p className="text-red-500 mb-4">{error}</p>}
-          {Object.keys(qroupedQuestions).length > 0 ? (
+          {!loading && Object.keys(qroupedQuestions).length > 0 ? (
             <div className="space-y-6">
               {Object.entries(qroupedQuestions).map(([group, questions]) => (
                 <div key={group}>
@@ -158,7 +165,7 @@ const InsightsPage: React.FC = () => {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">No suggested questions available for this topic yet. Please regenerate suggestions.</p>
+            <p className="text-gray-500">No suggested questions available for this topic yet. Click "Regenerate" to try again.</p>
           )}
         </CardContent>
       </Card>

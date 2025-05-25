@@ -97,7 +97,6 @@ export async function GET(request: Request) {
         suggestedQuestions.push("Consider exploring the general areas related to this topic.");
     }
 
-
     // 5. Return processed data to the frontend
     return NextResponse.json({ insights, suggestedQuestions }, { status: 200 });
   } catch (error) {
