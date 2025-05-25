@@ -23,10 +23,21 @@ const ResearchTimelineChart: React.FC<ResearchTimelineChartProps> = ({ data }) =
           sortedData.length > 0 ? (
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">  
-                <BarChart data={sortedData} margin={{ top: 10, right: 10, left: 10, bottom: 10 }}>
+                <BarChart data={sortedData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} className="stroke-gray-200"/>
-                  <XAxis dataKey="year" tickLine={false} axisLine={false} tickFormatter={ (value) => value.toString() } className='text=sm'/>
-                  <YAxis tickLine={false} axisLine={false} className='text-sm' width={30}/>
+                  <XAxis 
+                    dataKey="year" 
+                    tickLine={false} 
+                    axisLine={false} 
+                    tickFormatter={(value) => value.toString()} 
+                    className="text-sm"
+                  />
+                  <YAxis 
+                    tickLine={false} 
+                    axisLine={false} 
+                    className="text-sm" 
+                    width={30} // Adjust width to prevents labels from overlapping
+                  />
                   <Tooltip 
                     cursor={{ fill: 'transparent' }}
                     content={({ active, payload }) => {
@@ -55,9 +66,7 @@ const ResearchTimelineChart: React.FC<ResearchTimelineChartProps> = ({ data }) =
               </ResponsiveContainer>
             </div>
           ) : (
-            // <div className="h-64 flex flex-col items-center justify-center">
-            <p className="text-gray-500">No timeline data available for this topic.</p>
-            // </div>
+            <p className="text-gray-500 text-center">No timeline data available for this topic.</p>
           )
         }
       </CardContent>

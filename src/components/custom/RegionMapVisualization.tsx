@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import { RegionData } from '@/lib/types';
 
@@ -9,23 +10,27 @@ interface RegionMapVisualizationProps {
 }
 
 const RegionMapVisualization: React.FC<RegionMapVisualizationProps> = ({ data }) => {
+  // Sort data by count descending for better readability on the chart
+  const sortedData = [...data].sort((a, b) => b.count - a.count);
+  
   return (
-    <Card className="shadow-md rounded-lg">
+    <Card className="shadow-md rounded-lg h-full flex flex-col">
       <CardHeader>
         <CardTitle className="text-xl font-semibold">Research Distribution by Region</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex-grow p-4">
         {
           data.length > 0 ? (
-            <div className="h-64 flex flex-col justify-center items-center p-2">
-              {
-                // TODO: Add maps using ?? library
-              } 
-              <p className="mb-4 text-gray-500">
-                {
-                  // TODO: Add map visualization, showing research density by region
-                }
-              </p>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={sortedData} layout="vertical" margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} className="stroke-gray-200"/>
+                  <XAxis dataKey="name" tickLine={false} axisLine={false} tickFormatter={ (value) => value.toString() } className='text=sm'/>
+                  <YAxis tickLine={false} axisLine={false} className='text-sm' width={30}/>
+                  <Tooltip 
+                </BarChart>
+              </ResponsiveContainer>
+            
               <ul className="list-disc pl-5 text-gray-700">
                 {
                   data.map((item, index) => (
