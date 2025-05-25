@@ -128,7 +128,7 @@ const InsightsPage: React.FC = () => {
               ))}
             </ul>
           ) : (
-            <p className="text-gray-500">No specific insights available for this topic yet. Click "Regenerate" to try again.</p>
+            <p className="text-gray-500">No specific insights available for this topic yet. Click &#34;Regenerate&#34; to try again.</p>
           )}
         </CardContent>
       </Card>
@@ -165,7 +165,7 @@ const InsightsPage: React.FC = () => {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500">No suggested questions available for this topic yet. Click "Regenerate" to try again.</p>
+            <p className="text-gray-500">No suggested questions available for this topic yet. Click &#34;Regenerate&#34; to try again.</p>
           )}
         </CardContent>
       </Card>
