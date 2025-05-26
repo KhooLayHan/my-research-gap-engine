@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardTitle } from '@/components/ui/card';
 
 import { ResearchData } from '@/lib/types';
 import { loadSavedResearchQueries, deleteResearchQuery } from '@/lib/utils/localStorage';
@@ -43,7 +43,7 @@ const SavedQueriesPage: React.FC = () => {
         <Card className="shadow-lg rounded-lg p-8 text-center">
           <p className="text-gray-600 text-lg mb-4">No saved queries found.</p>
           <p className="text-gray-500">
-            Explore a topic on the <Link href="/explorer" className="text-blue-600 hover:underline">Explorer page</Link> and click "Save Query" to add it here!
+            Explore a topic on the <Link href="/explorer" className="text-blue-600 hover:underline">Explorer page</Link> and click &#34;Save Query&#34; to add it here!
           </p>
         </Card>
       ) : (
