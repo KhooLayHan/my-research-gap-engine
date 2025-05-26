@@ -1,5 +1,3 @@
-// src/components/custom/NavBar.tsx
-
 'use client'; // This component needs to be a client component for useRouter and Link
 
 import React from 'react';
@@ -15,6 +13,7 @@ const NavBar: React.FC = () => {
     { href: '/', label: 'Home' },
     { href: '/explorer', label: 'Explorer' },
     { href: '/insights', label: 'Insights' },
+    { href: '/saved-queries', label: 'Saved Queries' },
     { href: '/about', label: 'About' },
   ];
 
