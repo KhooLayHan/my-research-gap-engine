@@ -121,7 +121,7 @@ const InsightsPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto p-4 md:p-8 max-w-4xl">
+    <div className="container mx-auto p-4 md:p-8 max-w-6xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
         Insights & Suggested Questions for: <br/><span className="text-blue-600">{topic || 'Loading...'}</span>
       </h1>

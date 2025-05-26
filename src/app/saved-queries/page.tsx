@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
@@ -9,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ResearchData } from '@/lib/types';
 import { loadSavedResearchQueries, deleteResearchQuery } from '@/lib/utils/localStorage';
 
-import { Trash2, ExternalLink, Link } from 'lucide-react';
+import { Trash2, ExternalLink } from 'lucide-react';
 
 const SavedQueriesPage: React.FC = () => {
   const [savedQueries, setSavedQueries] = useState<ResearchData[]>([]);
@@ -55,20 +56,20 @@ const SavedQueriesPage: React.FC = () => {
               </div>
               <div className="flex-shrink-0 flex space-x-2 ml-4">
                 <Button
-                  size='icon'
+                  // size='icon'
                   variant="outline"
                   title="Load Query"
                   onClick={() => handleLoadQuery(query)}
                 >
-                  <ExternalLink className="w-5 h-5 text-blue-500"/>
+                  <ExternalLink className="w-5 h-5 text-blue-500"/>Load saved query
                 </Button>
                 <Button
                   variant="outline"
-                  size="icon"
+                  // size="icon"
                   title="Delete Query"
                   onClick={() => query.id && handleDeleteQuery(query.id)}
                 >
-                  <Trash2 className="w-5 h-5 text-red-500"/>
+                  <Trash2 className="w-5 h-5 text-red-500"/>Delete this query
                 </Button>
               </div>
             </Card>
@@ -83,7 +84,7 @@ const SavedQueriesPage: React.FC = () => {
           variant="outline"
           className="px-6 py-3 text-lg font-semibold text-gray-700 border-gray-300 hover:bg-gray-100 rounded-lg shadow-sm transition-colors duration-200"
         >
-          <Link href="/">Back to Home</Link>
+          <Link href="/">Back to Home</Link>  
         </Button>
       </div>
     </div>
