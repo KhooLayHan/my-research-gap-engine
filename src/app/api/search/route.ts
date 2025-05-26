@@ -241,6 +241,8 @@ async function processPerplexityResultsAndDetectGaps(topic: string): Promise<Res
         content: topic,
       },
     ], 'sonar');
+;
+    summary = extractPerplexityContent(summaryResponse);
 
     // 2. Fetch data for each visualization dimension
     const [timeline, regions, populations, subtopics] = await Promise.all([
