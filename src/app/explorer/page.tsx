@@ -65,9 +65,6 @@ const ExplorerPageContent: React.FC = () => {
     fetchData(); // Execute the function when the component mounts or the topic changes
   }, [topic]); // Dependency array: re-run when topic changes
   
-  // console.log(7, researchData);
-  // console.log(8, setResearchData);
-  
   const handleSaveQuery = () => {
     if (researchData) {
       addSavedResearchQuery(researchData);
@@ -105,20 +102,12 @@ const ExplorerPageContent: React.FC = () => {
     );
   }
 
-  console.log(researchData.summary);
-  // console.log(researchData.query);
-  // console.log(researchData.insights);
-  // console.log(researchData.suggestedQuestions);
-  
   // Helper to clean up text (remove markdown bold and list hyphens)
   const cleanText = (text: string) => text.replace(/\*\*/g, '').replace(/^- /, '').replace(/^# /, '').trim();
 
   // Helper to clean up Y-axis labels for SubtopicRadar
   const cleanYAxisLabel = (text: string) => text.replace(/^- /, '').replace(/\*\*/g, '').trim();
 
-  // console.log(researchData.insights.map(cleanText));
-  // console.log(researchData.suggestedQuestions.map(cleanText));
-  
   return (
     <div className="container mx-auto p-4 md:px-8 max-w-6xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
