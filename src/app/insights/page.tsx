@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
-const InsightsPage: React.FC = () => {
+const InsightsPageContent: React.FC = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -24,10 +24,6 @@ const InsightsPage: React.FC = () => {
 
   const initialInsights = (searchParams.get('insights')?.split('||') || []).map(cleanText);
   const initialQuestions = (searchParams.get('questions')?.split('||') || []).map((text: string) => capitalizeSentence(cleanText(text)));
-
-  // console.log(topic);
-  // console.log(initialInsights);
-  // console.log(initialQuestions);
 
   const [insights, setInsights] = useState<string[]>(initialInsights);
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>(initialQuestions);
@@ -199,6 +195,19 @@ const InsightsPage: React.FC = () => {
         </Button>
       </div>
     </div>
+  );
+}
+
+const InsightsPage: React.FC = () => {
+  return (
+    <Suspense fallback={
+      <div className="flex flex-col justify-center items-center min-h-screen p-4">
+        <h1 className="text-3xl font-bold text-blue-600 mb-4 ">Generating new insights...</h1>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mt-8"></div>
+      </div>
+    }>
+      <InsightsPageContent/>
+    </Suspense>
   );
 }
 
