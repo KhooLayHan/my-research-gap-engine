@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation"; // Hook to read URL parameters 
 
 import { v4 as uuidv4 } from 'uuid';
@@ -17,7 +17,7 @@ import WhatIsMissingPanel from "@/components/custom/WhatIsMissingPanel";
 import { ResearchData } from "@/lib/types";
 import { addSavedResearchQuery } from "@/lib/utils/localStorage";
 
-const ExplorerPage: React.FC = () => {
+const ExplorerPageContent: React.FC = () => {
   const searchParams = useSearchParams();
   const topic = searchParams.get("topic") || "No Topic Provided";
   const router = useRouter();
@@ -193,6 +193,19 @@ const ExplorerPage: React.FC = () => {
         </p>
       </div>
     </div>
+  );
+}
+
+const ExplorerPage: React.FC = () => {
+  return (
+    <Suspense fallback={
+      <div className="flex flex-col justify-center items-center min-h-screen p-4">
+        <h1 className="text-3xl font-bold text-blue-600 mb-4 ">Generating new explorer page...</h1>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mt-8"></div>
+      </div>
+    }>
+      <ExplorerPageContent/>
+    </Suspense>
   );
 }
 
