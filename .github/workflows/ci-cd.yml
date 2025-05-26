@@ -35,14 +35,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile # Install project dependencies using pnpm
 
-      # - name: Run ESLint
-      #   run: pnpm lint # Run ESLint checks
+      - name: Run ESLint
+        run: pnpm lint # Run ESLint checks
 
-      # - name: Run TypeScript check
-      #   run: pnpm type-check # Ensure your type-check script is defined in package.json
+      - name: Run TypeScript check
+        run: pnpm type-check # Ensure your type-check script is defined in package.json
 
-      # - name: Build Next.js application
-      #   run: pnpm build # Build the Next.js project for production
+      - name: Build Next.js application
+        run: pnpm build # Build the Next.js project for production
 
       - name: Deploy to Vercel
         # This step handles the actual deployment to Vercel.
