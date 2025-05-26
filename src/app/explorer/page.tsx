@@ -3,6 +3,9 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation"; // Hook to read URL parameters 
 
+import { v4 as uuidv4 } from 'uuid';
+
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import ResearchTimelineChart from "@/components/custom/ResearchTimelineChart";
@@ -12,7 +15,7 @@ import SubtopicRadar from "@/components/custom/SubtopicRadar";
 import WhatIsMissingPanel from "@/components/custom/WhatIsMissingPanel";
 
 import { ResearchData } from "@/lib/types";
-import { Button } from "@/components/ui/button";
+import { addSavedResearchQuery } from "@/lib/utils/localStorage";
 
 const ExplorerPage: React.FC = () => {
   const searchParams = useSearchParams();
@@ -22,6 +25,7 @@ const ExplorerPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [researchData, setResearchData] = useState<ResearchData | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [saveMessage, setSaveMessage] = useState<string | null>(null);
   
   useEffect(() => {
     // Only fetch if a topic is provided
@@ -35,6 +39,7 @@ const ExplorerPage: React.FC = () => {
       setLoading(true);
       setResearchData(null); // Clear any existing data
       setError(null); // Clear any existing errors
+      setSaveMessage(null); // Clear any existing save messages
 
       try {
         // Call your new Next.js API route
@@ -47,7 +52,7 @@ const ExplorerPage: React.FC = () => {
 
         const data = await response.json();
         
-        setResearchData(data);
+        setResearchData({ ...data, id: uuidv4() });
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -63,6 +68,14 @@ const ExplorerPage: React.FC = () => {
   // console.log(7, researchData);
   // console.log(8, setResearchData);
   
+  const handleSaveQuery = () => {
+    if (researchData) {
+      addSavedResearchQuery(researchData);
+      setSaveMessage('Query saved successfully!');
+      setTimeout(() => setSaveMessage(null), 3000);
+    }
+  }
+
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4">
@@ -84,7 +97,6 @@ const ExplorerPage: React.FC = () => {
   }
 
   if (!researchData) {
-    // TODO: This case should ideally be covered by error handling or a loading state, but as a fallback.
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-4">
         <h1 className="text-3xl font-bold text-gray-700 mb-4">No research data found for &#34;{topic}&#34;.</h1>
@@ -106,12 +118,28 @@ const ExplorerPage: React.FC = () => {
 
   // console.log(researchData.insights.map(cleanText));
   // console.log(researchData.suggestedQuestions.map(cleanText));
-
+  
   return (
     <div className="container mx-auto p-4 md:px-8 max-w-6xl">
       <h1 className="text-4xl font-extrabold text-gray-900 mb-8 text-center">
         Research Gaps for: <span className="text-blue-600">{researchData.query}</span>
       </h1>
+
+      {/* Save Query Button and Message */}
+      <div className="flex justify-end mb-4 items-center">
+        {saveMessage && (
+          <span className="text-green-600 text-sm mr-4 transition-opacity duration-300">
+            {saveMessage}
+          </span>
+        )}
+        <Button
+          onClick={handleSaveQuery}
+          disabled={!researchData || loading}
+          className="px-4 py-2 text-md font-semibold bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-md transition-colors duration-200"
+        >
+          Save Query
+        </Button>
+      </div>
 
       { /* Queried Summary Section */ }
       <Card className="mb-8 shadow-lg rounded-lg">
