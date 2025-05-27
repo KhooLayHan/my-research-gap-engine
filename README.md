@@ -1,40 +1,3 @@
-<!-- This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details. -->
-
 # 🔍 What's Not Being Researched Engine?
 
 ## Discover the Uncharted: Uncovering Critical Gaps in Global Knowledge
@@ -69,15 +32,15 @@ Our prototype focuses on the core functionality to identify and visualize resear
 
 The engine functions by orchestrating powerful web search and data analysis in real-time:
 
-1.  **User Query:** A user submits a research topic via the intuitive frontend.
-2.  **API Gateway:** The Next.js frontend sends this query to a secure API route (`/api/search`).
-3.  **Perplexity Sonar API Integration:** Our backend leverages the **Perplexity Sonar API** for comprehensive, real-time web search. It intelligently queries academic databases, news sources, and other reputable online content for the user's topic, as well as specific permutations (e.g., "topic in Africa," "topic post-2020," "topic children").
-    * We employ strategies to filter for **reputable academic sources**, analyze **recency of publications**, and look for **keywords indicating active research** within snippets to mitigate false negatives.
-4.  **Data Processing & Gap Detection:** The raw results from Perplexity Sonar are processed to:
-    * Count publication volumes per year, region, and demographic.
-    * Identify low-activity areas based on predefined metrics and comparisons.
-5.  **Insight Generation:** Based on the detected gaps, the system generates concise textual insights and feeds them into an AI model (leveraging Perplexity's own language model capabilities or a dedicated LLM if applicable) to formulate precise, actionable research questions.
-6.  **Frontend Visualization:** The processed data, insights, and suggested questions are sent back to the Next.js frontend, where they are beautifully visualized using various charts and maps via ShadCN/UI components.
+1. **User Query:** A user submits a research topic via the intuitive frontend.
+2. **API Gateway:** The Next.js frontend sends this query to a secure API route (`/api/search`).
+3. **Perplexity Sonar API Integration:** Our backend leverages the **Perplexity Sonar API** for comprehensive, real-time web search. It intelligently queries academic databases, news sources, and other reputable online content for the user's topic, as well as specific permutations (e.g., "topic in Africa," "topic post-2020," "topic children").
+   * We employ strategies to filter for **reputable academic sources**, analyze **recency of publications**, and look for keywords indicating active research** within snippets to mitigate false negatives.
+4. **Data Processing & Gap Detection:** The raw results from Perplexity Sonar are processed to:
+     * Count publication volumes per year, region, and demographic.
+     * Identify low-activity areas based on predefined metrics and comparisons.
+5. **Insight Generation:** Based on the detected gaps, the system generates concise textual insights and feeds them into an AI model (leveraging Perplexity's own language model capabilities or a dedicated LLM if applicable) to formulate precise, actionable research questions.
+6. **Frontend Visualization:** The processed data, insights, and suggested questions are sent back to the Next.js frontend, where they are beautifully visualized using various charts and maps via ShadCN/UI components.
 
 ---
 
@@ -86,12 +49,11 @@ The engine functions by orchestrating powerful web search and data analysis in r
 * **Frontend/Backend Framework:** [Next.js](https://nextjs.org/) (React framework for both frontend and API routes)
 * **Language:** [TypeScript](https://www.typescriptlang.org/) (for type safety across the entire stack)
 * **UI Components:** [ShadCN/UI](https://ui.shadcn.com/) (beautifully crafted, re-usable components)
-* **State Management:** [Zustand](https://zustand-store.github.io/) (for efficient and clean global state management)
 * **Schema Validation:** [Zod](https://zod.dev/) (for robust input validation on API routes)
 * **CI/CD:** [GitHub Actions](https://docs.github.com/en/actions) (for automated testing and deployment)
 * **Deployment Platform:** [Vercel](https://vercel.com/) (for seamless, high-performance web hosting)
 * **Core Data Engine:** **Perplexity Sonar API** (the backbone for real-time web search and insights)
-* **Data Visualization:** (e.g., Recharts, Chart.js, or ShadCN's `ui/chart` if used)
+* **Data Visualization:** (e.g., Recharts and ShadCN's `ui/chart`)
 
 ---
 
@@ -141,7 +103,7 @@ This project utilizes **GitHub Actions** for its Continuous Integration and Cont
     4.  Builds the Next.js application.
     5.  Deploys the production-ready build to **Vercel**.
 
-Deployment is handled automatically via Vercel's seamless integration with Next.js and GitHub. You can view the live deployment at [Your Vercel Deployment URL Here] (e.g., `https://whats-not-being-researched.vercel.app/`).
+Deployment is handled automatically via Vercel's seamless integration with Next.js and GitHub. You can view the live deployment at [https://my-research-gap-engine.vercel.app/](https://my-research-gap-engine.vercel.app/).
 
 ---
 
@@ -162,11 +124,11 @@ Given more time, we envision the following enhancements:
 We extend our sincere gratitude to:
 
 * **Perplexity AI** for providing the powerful Sonar API, which is central to this project's capabilities.
-* **The creators of Next.js, React, TypeScript, ShadCN/UI, Zustand, Zod, and Vercel** for building such incredible tools that empower rapid development.
-* **The Hackathon Organizers** for providing this platform to innovate!
+* **The creators of Next.js, React, TypeScript, ShadCN/UI, Zod, and Vercel** for building such incredible tools that empower rapid development.
+* **Devpost and the Hackathon Organizers** for providing this platform to innovate!
 
 ---
 
 ## 📜 License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is open-source and available under the [MIT License](https://opensource.org/license/mit). See [MIT License](LICENSE) for the full license text.
