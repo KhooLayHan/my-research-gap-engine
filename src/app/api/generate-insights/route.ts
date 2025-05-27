@@ -16,7 +16,13 @@ function extractPerplexityContent(response: PerplexityAPIResponse): string {
     if (Array.isArray(message.content)) {
       // Concatenate text parts
       return message.content
-        .map((part: PerplexityContentPart) => part.title)
+        .map((part: PerplexityContentPart) => {
+          // Defensive checks: ensure part is an object, not null, and has a 'text' property that is a string
+          if (typeof part === 'object' && part !== null && 'title' in part && typeof part.title === 'string') {
+            return part.title;
+          }
+          return ''; // Return an empty string for any invalid or non-text parts
+        })
         .filter(Boolean)
         .join('\n');
     }

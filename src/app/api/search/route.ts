@@ -16,7 +16,13 @@ function extractPerplexityContent(response: PerplexityAPIResponse): string {
     if (Array.isArray(message.content)) {
       // Concatenate text parts
       return message.content
-        .map((part: PerplexityContentPart) => part.title)
+        .map((part: PerplexityContentPart) => {
+          // Defensive checks: ensure part is an object, not null, and has a 'title' property that is a string
+          if (typeof part === 'object' && part !== null && 'title' in part && typeof part.title === 'string') {
+            return part.title;
+          }
+          return ''; // Return an empty string for any invalid or non-text parts
+        })
         .filter(Boolean) 
         .join('\n');
     }
@@ -220,7 +226,6 @@ async function getSubtopicData(topic:string): Promise<SubtopicData[]> {
  * 4. Applying thresholds and comparisons to identify actual gaps.
  * 5. Using an LLM (potentially Perplexity itself with a specific prompt) to generate insights and questions.
  *
- * For now, this uses the mock data and generates insights/questions based on simple rules.
  * @param topic The research topic.
  * @returns Processed ResearchData.
  */
@@ -299,10 +304,6 @@ async function processPerplexityResultsAndDetectGaps(topic: string): Promise<Res
       insights.push(`Key aspects like **${underCoveredSubtopics.map(s => s.name).join(', ')}** related to "${topic}" appears to be significantly under-researched.`);
       suggestedQuestions.push(`Explore the **${underCoveredSubtopics[0].name}** aspects of "${topic}" to bridge knowledge gaps.`);
     } 
-    // else if (underResearchedSubtopics.length > 0) {
-    //   insights.push(`Significant under-representation of research on **${underResearchedSubtopics.map(item => item.name).join(', ')}** subtopics of "${topic}".`);
-    //   suggestedQuestions.push(`What are the key areas of "${topic}" that require immediate research attention?`);
-    // }
 
     // 4. Final AI call for comprehensive insights and questions based on ALL detected gaps.
     // Combine all specific insights for a robust final prompt.
@@ -319,7 +320,7 @@ async function processPerplexityResultsAndDetectGaps(topic: string): Promise<Res
         role: 'user',
         content: finalInsightsPrompt,
       },
-    ], 'sonar') // Use a normal model for better quality insights/questions, or pro model instead???
+    ], 'sonar') 
 
     const finalContent = extractPerplexityContent(finalAIResponse);
     const finalInsights: string[] = [];
