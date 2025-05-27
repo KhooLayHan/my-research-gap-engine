@@ -47,7 +47,7 @@ jobs:
       - name: Cache pnpm dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ steps.pnpm-setup.outputs.store_path }} # Cache the pnpm store path
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }} # Cache the pnpm store path
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }} # Cache key based on OS and lockfile hash
           restore-keys: |
             ${{ runner.os }}-pnpm-
