@@ -29,7 +29,7 @@ const HomePage: React.FC = () => {
   const exampleQueries = [
     'Technology in Mental Health',
     'AI for Accessibility',
-    'Sustainable energy',
+    'Sustainable Energy',
     'Suitainable Palm Oil Production in Southeast Asia',
     'Impact of Climate Change'
   ]
