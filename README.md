@@ -2,8 +2,6 @@
 
 ## Discover the Uncharted: Uncovering Critical Gaps in Global Knowledge
 
----
-
 ## 🚀 Introduction
 
 In the vast landscape of global research, certain areas receive immense attention, funding, and scholarly focus. However, equally critical questions often remain untouched, neglected, or simply overlooked due to various biases—be it geographical, demographic, or thematic. This leads to significant knowledge gaps that can hinder innovation, effective policymaking, and equitable development.
