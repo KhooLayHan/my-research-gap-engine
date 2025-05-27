@@ -31,7 +31,7 @@ The engine functions by orchestrating powerful web search and data analysis in r
 1. **User Query:** A user submits a research topic via the intuitive frontend.
 2. **API Gateway:** The Next.js frontend sends this query to a secure API route (`/api/search`).
 3. **Perplexity Sonar API Integration:** Our backend leverages the **Perplexity Sonar API** for comprehensive, real-time web search. It intelligently queries academic databases, news sources, and other reputable online content for the user's topic, as well as specific permutations (e.g., "topic in Africa," "topic post-2020," "topic children").
-   * We employ strategies to filter for **reputable academic sources**, analyze **recency of publications**, and look for keywords indicating active research** within snippets to mitigate false negatives.
+   * We employ strategies to filter for **reputable academic sources**, analyze **recency of publications**, and look for keywords **indicating active research** within snippets to mitigate false negatives.
 4. **Data Processing & Gap Detection:** The raw results from Perplexity Sonar are processed to:
      * Count publication volumes per year, region, and demographic.
      * Identify low-activity areas based on predefined metrics and comparisons.
@@ -47,7 +47,7 @@ The engine functions by orchestrating powerful web search and data analysis in r
 * **CI/CD:** [GitHub Actions](https://docs.github.com/en/actions) (for automated testing and deployment)
 * **Deployment Platform:** [Vercel](https://vercel.com/) (for seamless, high-performance web hosting)
 * **Core Data Engine:** **Perplexity Sonar API** (the backbone for real-time web search and insights)
-* **Data Visualization:** (e.g., Recharts and ShadCN's `ui/chart`)
+* **Data Visualization:** (e.g., [Recharts](https://recharts.org/en-US) and ShadCN's `ui/chart`)
 
 ## 🚀 Getting Started (Local Development)
 
@@ -87,11 +87,11 @@ To run this project locally, follow these steps:
 This project utilizes **GitHub Actions** for its Continuous Integration and Continuous Deployment pipeline.
 
 * On every `push` to the `main` branch or `pull_request` targeting `main`, the workflow:
-  1.  Installs dependencies.
-  2.  Runs ESLint checks.
-  3.  Performs TypeScript type checks.
-  4.  Builds the Next.js application.
-  5.  Deploys the production-ready build to **Vercel**.
+  1. Installs dependencies.
+  2. Runs ESLint checks.
+  3. Performs TypeScript type checks.
+  4. Builds the Next.js application.
+  5. Deploys the production-ready build to **Vercel**.
 
 Deployment is handled automatically via Vercel's seamless integration with Next.js and GitHub. You can view the live deployment at [https://my-research-gap-engine.vercel.app/](https://my-research-gap-engine.vercel.app/).
 
