@@ -1,14 +1,14 @@
 # 🔍 What's Not Being Researched Engine?
 
-## Discover the Uncharted: Uncovering Critical Gaps in Global Knowledge
+Discover the Uncharted: Uncovering Critical Gaps in Global Knowledge
 
-### 🚀 Introduction
+## 🚀 Introduction
 
 In the vast landscape of global research, certain areas receive immense attention, funding, and scholarly focus. However, equally critical questions often remain untouched, neglected, or simply overlooked due to various biases—be it geographical, demographic, or thematic. This leads to significant knowledge gaps that can hinder innovation, effective policymaking, and equitable development.
 
 The **"What's Not Being Researched Engine?"** is our innovative solution to tackle this challenge. Leveraging the power of real-time web intelligence, this tool aims to shed light on these underserved research domains, guiding curious minds, researchers, and policymakers towards uncharted territories of discovery.
 
-### ✨ Features (MVP)
+## ✨ Features (MVP)
 
 Our prototype focuses on the core functionality to identify and visualize research gaps:
 
