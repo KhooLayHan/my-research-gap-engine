@@ -16,15 +16,13 @@ Our prototype focuses on the core functionality to identify and visualize resear
 
 * **Intuitive Search:** Easily input any topic to begin exploring its research landscape.
 * **Real-time Gap Analysis:**
-    * **Research Timeline:** Visualize the historical volume of research to identify periods of inactivity or decline.
-    * **Regional Distribution:** Map where the research has (or hasn't) been conducted across different geographical areas.
-    * **Population Coverage:** Highlight which demographic groups are underrepresented in studies related to your topic.
-    * **Subtopic Radar:** Reveal related themes and their current research coverage.
+  * **Research Timeline:** Visualize the historical volume of research to identify periods of inactivity or decline.
+  * **Regional Distribution:** Map where the research has (or hasn't) been conducted across different geographical areas.
+  * **Population Coverage:** Highlight which demographic groups are underrepresented in studies related to your topic.
+  * **Subtopic Radar:** Reveal related themes and their current research coverage.
 * **Actionable Insights:** Automated summaries of identified gaps (e.g., "No significant studies found in Southeast Asia post-2020 on X topic").
 * **AI-Suggested Questions:** Generate novel, impactful research questions directly derived from the identified gaps, fostering new avenues for inquiry.
 * **Clear About Page:** Explains the problem, our methodology, and the role of Perplexity Sonar API.
-
----
 
 ## ⚙️ How It Works (Technical Overview)
 
@@ -40,8 +38,6 @@ The engine functions by orchestrating powerful web search and data analysis in r
 5. **Insight Generation:** Based on the detected gaps, the system generates concise textual insights and feeds them into an AI model (leveraging Perplexity's own language model capabilities or a dedicated LLM if applicable) to formulate precise, actionable research questions.
 6. **Frontend Visualization:** The processed data, insights, and suggested questions are sent back to the Next.js frontend, where they are beautifully visualized using various charts and maps via ShadCN/UI components.
 
----
-
 ## 🛠️ Technologies Used
 
 * **Frontend/Backend Framework:** [Next.js](https://nextjs.org/) (React framework for both frontend and API routes)
@@ -53,30 +49,28 @@ The engine functions by orchestrating powerful web search and data analysis in r
 * **Core Data Engine:** **Perplexity Sonar API** (the backbone for real-time web search and insights)
 * **Data Visualization:** (e.g., Recharts and ShadCN's `ui/chart`)
 
----
-
 ## 🚀 Getting Started (Local Development)
 
 To run this project locally, follow these steps:
 
-1.  **Clone the repository:**
+1. **Clone the repository:**
     ```bash
     git clone [https://github.com/your-username/my-research-gap-engine.git](https://github.com/your-username/my-research-gap-engine.git)
     cd my-research-gap-engine
-    ```
+    ``` 
 
-2.  **Install pnpm (if you don't have it):**
+2. **Install pnpm (if you don't have it):**
     ```bash
     npm install -g pnpm
     ```
 
-3.  **Install dependencies:**
+3. **Install dependencies:**
     ```bash
     pnpm install
     ```
 
-4.  **Set up Environment Variables:**
-    Create a `.env.local` file in the project root and add your Perplexity API Key:
+4. **Set up Environment Variables:**
+  Create a `.env.local` file in the project root and add your Perplexity API Key:
     ```
     PERPLEXITY_API_KEY=your_perplexity_sonar_api_key_here
     ```
@@ -88,22 +82,18 @@ To run this project locally, follow these steps:
     ```
     Open your browser and visit `http://localhost:3000`.
 
----
-
 ## 🌐 CI/CD & Deployment
 
 This project utilizes **GitHub Actions** for its Continuous Integration and Continuous Deployment pipeline.
 
 * On every `push` to the `main` branch or `pull_request` targeting `main`, the workflow:
-    1.  Installs dependencies.
-    2.  Runs ESLint checks.
-    3.  Performs TypeScript type checks.
-    4.  Builds the Next.js application.
-    5.  Deploys the production-ready build to **Vercel**.
+  1.  Installs dependencies.
+  2.  Runs ESLint checks.
+  3.  Performs TypeScript type checks.
+  4.  Builds the Next.js application.
+  5.  Deploys the production-ready build to **Vercel**.
 
 Deployment is handled automatically via Vercel's seamless integration with Next.js and GitHub. You can view the live deployment at [https://my-research-gap-engine.vercel.app/](https://my-research-gap-engine.vercel.app/).
-
----
 
 ## 🔮 Future Enhancements (Post-Hackathon)
 
@@ -115,8 +105,6 @@ Given more time, we envision the following enhancements:
 * **Collaboration Features:** Enable researchers to share identified gaps and collaborate on potential projects.
 * **Crowdsourced Validation:** Allow users to confirm or refine identified gaps and suggested questions.
 
----
-
 ## 🙏 Acknowledgements
 
 We extend our sincere gratitude to:
@@ -124,8 +112,6 @@ We extend our sincere gratitude to:
 * **Perplexity AI** for providing the powerful Sonar API, which is central to this project's capabilities.
 * **The creators of Next.js, React, TypeScript, ShadCN/UI, Zod, and Vercel** for building such incredible tools that empower rapid development.
 * **Devpost and the Hackathon Organizers** for providing this platform to innovate!
-
----
 
 ## 📜 License
 
