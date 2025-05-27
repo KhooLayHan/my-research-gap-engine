@@ -54,32 +54,40 @@ The engine functions by orchestrating powerful web search and data analysis in r
 To run this project locally, follow these steps:
 
 1. **Clone the repository:**
+
     ```bash
     git clone [https://github.com/your-username/my-research-gap-engine.git](https://github.com/your-username/my-research-gap-engine.git)
     cd my-research-gap-engine
-    ``` 
+    ```
 
 2. **Install pnpm (if you don't have it):**
+
     ```bash
     npm install -g pnpm
     ```
 
 3. **Install dependencies:**
+
     ```bash
     pnpm install
     ```
 
 4. **Set up Environment Variables:**
-  Create a `.env.local` file in the project root and add your Perplexity API Key:
-    ```
+  
+    Create a `.env.local` file in the project root and add your Perplexity API Key:
+
+    ```bash
     PERPLEXITY_API_KEY=your_perplexity_sonar_api_key_here
     ```
+
     *You can obtain your Perplexity Sonar API Key from the Perplexity AI platform.*
 
-5.  **Run the development server:**
+5. **Run the development server:**
+
     ```bash
     pnpm dev
     ```
+  
     Open your browser and visit `http://localhost:3000`.
 
 ## 🌐 CI/CD & Deployment
