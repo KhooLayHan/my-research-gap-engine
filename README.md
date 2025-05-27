@@ -8,9 +8,7 @@ In the vast landscape of global research, certain areas receive immense attentio
 
 The **"What's Not Being Researched Engine?"** is our innovative solution to tackle this challenge. Leveraging the power of real-time web intelligence, this tool aims to shed light on these underserved research domains, guiding curious minds, researchers, and policymakers towards uncharted territories of discovery.
 
----
-
-## ✨ Features (MVP)
+### ✨ Features (MVP)
 
 Our prototype focuses on the core functionality to identify and visualize research gaps:
 
