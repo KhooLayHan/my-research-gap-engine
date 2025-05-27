@@ -35,7 +35,7 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4 # Set up pnpm environment
         with:
-          version: 10 # Use pnpm version 9.15.0
+          version: 10 # Use pnpm version 10
           run_install: false # Run pnpm install automatically
 
       - name: Install dependencies
@@ -50,19 +50,20 @@ jobs:
       - name: Build Next.js application
         run: pnpm build # Build the Next.js project for production
 
-      - name: Deploy to Vercel
-        # This step handles the actual deployment to Vercel.
-        # It uses the Vercel CLI.
+      - name: Install Vercel CLI
+        run: pnpm add -g vercel@latest # Install Vercel CLI globally
+      
+      - name: Build with Vercel CLI
         run: |
-          pnpm add -g vercel@latest # Install Vercel CLI globally
-          
           # Pull Vercel project settings and environment variables
           # This ensures that secrets defined in Vercel (like PERPLEXITY_API_KEY)
           # are available during the build phase in the CI environment if needed.
           # The --yes flag answers "yes" to any prompts, and --environment=production
           # ensures it pulls the production environment variables.
-          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-
+          vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }} && vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      
+      - name: Deploy to Vercel
+        run: |
           # Deploy the pre-built application to Vercel.
           # --prebuilt tells Vercel to use the output from `pnpm build` directly,
           # which saves time by not rebuilding on Vercel's side.
