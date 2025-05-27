@@ -56,7 +56,7 @@ const SavedQueriesPage: React.FC = () => {
               </div>
               <div className="flex-shrink-0 flex space-x-2 ml-4">
                 <Button
-                  // size='icon'
+                  size='icon'
                   variant="outline"
                   title="Load Query"
                   onClick={() => handleLoadQuery(query)}
@@ -65,7 +65,7 @@ const SavedQueriesPage: React.FC = () => {
                 </Button>
                 <Button
                   variant="outline"
-                  // size="icon"
+                  size="icon"
                   title="Delete Query"
                   onClick={() => query.id && handleDeleteQuery(query.id)}
                 >
