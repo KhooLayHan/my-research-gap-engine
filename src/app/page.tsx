@@ -27,10 +27,10 @@ const HomePage: React.FC = () => {
   }
 
   const exampleQueries = [
-    'Mental Health in Africa',
+    'Technology in Mental Health',
     'AI for Accessibility',
     'Sustainable energy',
-    'Suitainable Palm Oil Production in Southeast Asia', // Is local relevance necessary?
+    'Suitainable Palm Oil Production in Southeast Asia',
     'Impact of Climate Change'
   ]
 
@@ -42,7 +42,7 @@ const HomePage: React.FC = () => {
         <span className="text-blue-600">What&apos;s Not Being Researched?</span>
       </h1>
       <p className="text-lg text-gray-700 mb-10 max-w-prose">
-        Explore critical knowledge gaps with across various fields. Our engine helps to discover overlooked areas, underrepresented populations, and neglected regions in global research.
+        Explore critical knowledge gaps across various fields. Our engine helps to discover overlooked areas, underrepresented populations, and neglected regions in global research.
       </p>
 
       <div className="w-full flex flex-col sm:flex-row gap-4 mb-6">

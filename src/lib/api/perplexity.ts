@@ -23,8 +23,7 @@ type PerplexityModel = PerplexitySearchModel | PerplexityResearchModel | Perplex
  */
 export async function getPerplexityCompletion(
   messages: PerplexityMessage[],
-  model: PerplexityModel
-  // model: PerplexityModel = 'sonar-pro' // Defaults to sonar-pro for better results
+  model: PerplexityModel = 'sonar-pro' // Defaults to sonar-pro for better results
 ): Promise<PerplexityAPIResponse> {
   if (!PERPLEXITY_API_KEY) {
     throw new Error('PERPLEXITY_API_KEY is not configured. Please set PERPLEXITY_API_KEY in your .env.local file.');
