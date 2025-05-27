@@ -115,4 +115,4 @@ We extend our sincere gratitude to:
 
 ## 📜 License
 
-This project is open-source and available under the [MIT License](https://opensource.org/license/mit). See [MIT License](LICENSE) for the full license text.
+This project is open-source and available under the [MIT License](https://opensource.org/license/mit). See [LICENSE](LICENSE) for the full license text.
