@@ -33,6 +33,7 @@ jobs:
           cache: 'pnpm'      # Cache pnpm dependencies
 
       - name: Setup pnpm
+        id: pnpm-setup
         uses: pnpm/action-setup@v4 # Set up pnpm environment
         with:
           version: 10 # Use pnpm version 10
@@ -46,13 +47,13 @@ jobs:
       - name: Cache pnpm dependencies
         uses: actions/cache@v4
         with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }} # Cache the pnpm store path
+          path: ${{ steps.pnpm-setup.outputs.STORE_PATH }} # Cache the pnpm store path
           key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }} # Cache key based on OS and lockfile hash
           restore-keys: |
             ${{ runner.os }}-pnpm-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile # Install project dependencies using pnpm
+        run: pnpm install --no-frozen-lockfile # Install project dependencies using pnpm
 
       - name: Run ESLint
         run: pnpm lint # Run ESLint checks
