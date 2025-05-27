@@ -32,6 +32,12 @@ jobs:
           node-version: '20' # Use Node.js LTS version 20
           cache: 'pnpm'      # Cache pnpm dependencies
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4 # Set up pnpm environment
+        with:
+          version: 10 # Use pnpm version 9.15.0
+          run_install: false # Run pnpm install automatically
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile # Install project dependencies using pnpm
 
