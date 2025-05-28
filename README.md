@@ -48,6 +48,7 @@ The engine functions by orchestrating powerful web search and data analysis in r
 * **Deployment Platform:** [Vercel](https://vercel.com/) (for seamless, high-performance web hosting)
 * **Core Data Engine:** **Perplexity Sonar API** (the backbone for real-time web search and insights)
 * **Data Visualization:** (e.g., [Recharts](https://recharts.org/en-US) and ShadCN's `ui/chart`)
+* **Lucide** [Lucide](https://lucide.dev/) (for superb vector-based icons) 
 
 ## 🚀 Getting Started (Local Development)
 
@@ -118,7 +119,7 @@ Given more time, we envision the following enhancements:
 We extend our sincere gratitude to:
 
 * **Perplexity AI** for providing the powerful Sonar API, which is central to this project's capabilities.
-* **The creators of Next.js, React, TypeScript, ShadCN/UI, Zod, and Vercel** for building such incredible tools that empower rapid development.
+* **The creators of Next.js, React, TypeScript, ShadCN/UI, Zod, Lucide, and Vercel** for building such incredible tools that empower rapid development.
 * **Devpost and the Hackathon Organizers** for providing this platform to innovate!
 
 ## 📜 License
