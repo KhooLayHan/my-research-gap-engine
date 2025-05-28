@@ -63,14 +63,8 @@ const InsightsPageContent: React.FC = () => {
 
       const data = await response.json();
 
-      console.log("Data received from API:", data);
-
       setInsights((data.insights || []).map(cleanText));
       setSuggestedQuestions((data.suggestedQuestions || []).map(cleanText));
-
-      console.log("Insights state after update:", insights);
-      console.log("Questions state after update:", suggestedQuestions);
-
     } catch (err) {
       console.error('Error regenerating suggestions:', err);
       setError(err instanceof Error ? err.message : 'Failed to regenerate suggestions.');
