@@ -18,12 +18,18 @@ const InsightsPageContent: React.FC = () => {
   const cleanText = (text: string) => text.replace(/\*\*/g, '').replace(/^[-\*]\s*/, '').trim();
 
   // Helper to capitalize first letter of each sentence
-  const capitalizeSentence = (text: string) => {
-    return text.charAt(0).toUpperCase() + text.slice(1);
-  };
+  // PS: Don't know why it's not working with the cleanText function, somehow it would make the data not be displayed in the UI
+//   const capitalizeSentence = (sentence: string): string => {
+//     if (!sentence || sentence.trim() === '') { // Handle null, undefined, or empty/whitespace-only strings
+//         return '';
+//     }
+    // Trim to handle leading/trailing spaces before capitalization
+//     const trimmedSentence = sentence.trim();
+//     return trimmedSentence.charAt(0).toUpperCase() + trimmedSentence.slice(1);
+// };
 
   const initialInsights = (searchParams.get('insights')?.split('||') || []).map(cleanText);
-  const initialQuestions = (searchParams.get('questions')?.split('||') || []).map((text: string) => capitalizeSentence(cleanText(text)));
+  const initialQuestions = (searchParams.get('questions')?.split('||') || []).map(cleanText);
 
   const [insights, setInsights] = useState<string[]>(initialInsights);
   const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>(initialQuestions);
@@ -56,8 +62,15 @@ const InsightsPageContent: React.FC = () => {
       }
 
       const data = await response.json();
-      setInsights((data.newInsights || []).map(cleanText));
-      setSuggestedQuestions((data.newQuestions || []).map((text: string) => capitalizeSentence(cleanText(text))));
+
+      console.log("Data received from API:", data);
+
+      setInsights((data.insights || []).map(cleanText));
+      setSuggestedQuestions((data.suggestedQuestions || []).map(cleanText));
+
+      console.log("Insights state after update:", insights);
+      console.log("Questions state after update:", suggestedQuestions);
+
     } catch (err) {
       console.error('Error regenerating suggestions:', err);
       setError(err instanceof Error ? err.message : 'Failed to regenerate suggestions.');

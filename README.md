@@ -48,7 +48,7 @@ The engine functions by orchestrating powerful web search and data analysis in r
 * **Deployment Platform:** [Vercel](https://vercel.com/) (for seamless, high-performance web hosting)
 * **Core Data Engine:** **Perplexity Sonar API** (the backbone for real-time web search and insights)
 * **Data Visualization:** (e.g., [Recharts](https://recharts.org/en-US) and ShadCN's `ui/chart`)
-* **Lucide:** [Lucide](https://lucide.dev/) (for superb vector-based icons) 
+* **Lucide:** [Lucide](https://lucide.dev/) (for superb vector-based icons)
 
 ## 🚀 Getting Started (Local Development)
 
