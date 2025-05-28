@@ -57,7 +57,7 @@ To run this project locally, follow these steps:
 1. **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/your-username/my-research-gap-engine.git](https://github.com/your-username/my-research-gap-engine.git)
+    git clone https://github.com/KhooLayHan/my-research-gap-engine.git
     cd my-research-gap-engine
     ```
 
